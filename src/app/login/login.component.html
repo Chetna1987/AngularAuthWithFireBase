@@ -1,0 +1,53 @@
+<div class="center-content">
+    <mat-card class="example-card">
+        <mat-card-header>
+            <mat-card-title>Sign In/Sign Up</mat-card-title>
+        </mat-card-header>
+        <mat-tab-group mat-align-tabs="center">
+            <mat-tab label="Sign In">
+                <form [formGroup]="form" id="form" class="example-form">
+                    <mat-form-field class="example-full-width ">
+                        <mat-label>Email</mat-label>
+                        <input type="email" matInput placeholder="Email" class="email-up form-control" formControlName="email">
+                        <mat-icon matSuffix>mail</mat-icon>
+                        <mat-error *ngIf="form.controls.email.invalid">{{getErrorMessage()}}</mat-error>
+
+                    </mat-form-field>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Password</mat-label>
+                        <input matInput [type]="hide ? 'password' : 'text'" placeholder="Password" class="form-control" formControlName="password">
+                        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                        <mat-icon matSuffix>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                        <mat-error *ngIf="form.controls.password.invalid"><span>Enter a valid password.</span></mat-error> 
+                    </mat-form-field>
+                </form>
+                <a routerLink="/reset-password" class="frgt_password" *ngIf ="form.controls.email.value != '' &&  error" (click)="verifyEmail">Forgot Password?</a>
+                <button mat-raised-button color="primary" class="button-full-width" (click)="login()">Sign In</button>
+                <mat-error *ngIf="error"><span>{{error}}</span></mat-error> 
+            </mat-tab>
+            <mat-tab label="Sign Up">
+                <form [formGroup]="form" id="form" class="example-form">
+                    <mat-form-field class="example-full-width ">
+                        <mat-label>Email</mat-label>
+                        <input type="email" matInput placeholder="Email" class="email-up form-control" formControlName="email">
+                        <mat-icon matSuffix>mail</mat-icon>
+                        <mat-error *ngIf="form.controls.email.invalid">{{getErrorMessage()}}</mat-error>
+
+                    </mat-form-field>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Password</mat-label>
+                        <input matInput [type]="hide ? 'password' : 'text'" placeholder="Password" class="form-control" formControlName="password">
+                        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                        <mat-icon matSuffix>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                    </mat-form-field>
+                </form>
+                <button mat-raised-button  class="button-full-width" color="primary" (click)="signUp()">Sign Up</button>
+                <mat-error *ngIf="error"><span>{{error}}</span></mat-error> 
+            </mat-tab>
+        </mat-tab-group>
+    </mat-card>
+
+
+</div>
